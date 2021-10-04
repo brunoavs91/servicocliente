@@ -9,8 +9,13 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()//.antMatchers(HttpMethod.POST, "/algo").hasRole("USER") vc valida algum endpoint especifico
+        http.authorizeRequests()
+                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest()
                 .authenticated();
+        //liberar o browser para acessar o h2
+        http.headers().frameOptions().sameOrigin();
     }
+
+
 }

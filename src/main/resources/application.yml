@@ -1,7 +1,19 @@
 spring:
   application:
     name: 'servico-cliente'
-
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    database: H2
+  h2:
+    console:
+      enabled: true
 server:
   port: 8083
 
@@ -16,3 +28,15 @@ security:
   oauth2:
     resource:
       user-info-uri: http://localhost:8088/user
+
+cloud:
+  aws:
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      access-key: AKIARZ3CJKRA3YMDEYMX
+      secret-key: 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
+    end-point:
+        uri: https://sqs.us-east-1.amazonaws.com/124223312961/criar_pedido_status
+

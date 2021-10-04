@@ -2,6 +2,7 @@ package com.boaentrega.servicocliente;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.aws.messaging.config.annotation.EnableSqs;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableResourceServer
 @EnableDiscoveryClient
+@EnableSqs
 public class ServicoclienteApplication {
 
 	public static void main(String[] args) {
