@@ -16,10 +16,20 @@ public class PedidoListener {
     private PedidoStatusService pedidoStatusService;
 
     @SqsListener("criar_pedido_status")
-    public void receberMensagem(String mensagem) {
-        log.info("Recebendo mensagem da fila:{} ", mensagem);
+    public void receberMensagemSalvar(String mensagem) {
+        log.info("Recebendo mensagem para salvar pedido:{} ", mensagem);
         try {
             pedidoStatusService.criarPedidoStatus(mensagem);
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+        }
+    }
+
+    @SqsListener("atualizar_pedido_status")
+    public void receberMensagemAtualizar(String mensagem) {
+        log.info("Recebendo mensagem atualizar:{} ", mensagem);
+        try {
+            pedidoStatusService.atualizarPedidoStatus(mensagem);
         } catch (Exception ex) {
             log.error(ex.getMessage());
         }

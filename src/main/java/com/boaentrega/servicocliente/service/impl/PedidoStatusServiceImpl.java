@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 @Service
 public class PedidoStatusServiceImpl implements PedidoStatusService {
@@ -28,7 +29,8 @@ public class PedidoStatusServiceImpl implements PedidoStatusService {
         PedidoStatusDTO dto = mapper.readValue(mensagem, PedidoStatusDTO.class);
         log.info("Pedido : {}", dto.toString());
         PedidoStatus pedidoStatus = repository.save(PedidoStatus.builder().numeroPedido(dto.getNumeroPedido())
-                .status(dto.getStatus()).localizacao(dto.getLocalizacao()).build());
+                .status(dto.getStatus()).localizacao(dto.getLocalizacao())
+                .dataInicio(Calendar.getInstance()).build());
         log.info("Pedido Salvo : {}", pedidoStatus.getNumeroPedido());
 
     }
@@ -41,6 +43,9 @@ public class PedidoStatusServiceImpl implements PedidoStatusService {
                 .orElseThrow(() -> new Exception("Pedido nao encontrado"));
         pedidoStatus.setStatus(dto.getStatus());
         pedidoStatus.setLocalizacao(dto.getLocalizacao());
+        if(pedidoStatus.getStatus().equalsIgnoreCase("ENTREGUE")){
+            pedidoStatus.setDataFim(Calendar.getInstance());
+        }
         repository.save(pedidoStatus);
         log.info("Pedido Salvo : {}", pedidoStatus.toString());
 

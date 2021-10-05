@@ -2,18 +2,15 @@ spring:
   application:
     name: 'servico-cliente'
   datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: create
-    database: H2
-  h2:
-    console:
-      enabled: true
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/servico-cliente
+    driver-class-name: org.mariadb.jdbc.Driver
+    jpa:
+      hibernate:
+        ddl: true
+        ddl-auto: update
+
 server:
   port: 8083
 
@@ -38,5 +35,6 @@ cloud:
       access-key: <>
       secret-key: <>
     end-point:
-        uri: https://sqs.us-east-1.amazonaws.com/124223312961/criar_pedido_status
+        uri-criar: https://sqs.us-east-1.amazonaws.com/124223312961/criar_pedido_status
+        uri-atualizar: https://sqs.us-east-1.amazonaws.com/124223312961/atualizar_pedido_status
 

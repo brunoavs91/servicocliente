@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Calendar;
 
 @Entity
 @Data
@@ -21,4 +24,10 @@ public class PedidoStatus {
     private String status;
 
     private String localizacao;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dataInicio;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dataFim;
 }

@@ -20,7 +20,7 @@ public class AwsController {
     @Autowired
     private QueueMessagingTemplate queueMessagingTemplate;
 
-    @Value("${cloud.aws.end-point.uri}")
+    @Value("${cloud.aws.end-point.uri-criar}")
     private String endPoint;
 
     @GetMapping("/{mensagem}")
