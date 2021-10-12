@@ -12,7 +12,7 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest()
-                .authenticated();
+                .permitAll();
         //liberar o browser para acessar o h2
         http.headers().frameOptions().sameOrigin();
     }

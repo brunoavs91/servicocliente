@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Calendar;
@@ -30,4 +32,8 @@ public class PedidoStatus {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataFim;
+
+    @OneToOne
+    @JoinColumn(name = "destino")
+    private Endereco destino;
 }
