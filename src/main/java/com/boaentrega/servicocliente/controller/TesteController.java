@@ -1,6 +1,7 @@
 package com.boaentrega.servicocliente.controller;
 
 
+import com.boaentrega.servicocliente.model.dto.EnderecosEntregaDTO;
 import com.boaentrega.servicocliente.service.RotaService;
 import com.google.maps.model.DirectionsResult;
 
@@ -31,7 +32,7 @@ public class TesteController {
     @CrossOrigin
     public String getDirections() {
         try{
-        DirectionsResult rota = rotaService.buscarRotaEntrega(1L);
+        EnderecosEntregaDTO rota = rotaService.buscarEnderecosEntrega(1L);
         return mapper.writeValueAsString(rota);
         } catch (Exception ex) {
 

@@ -1,6 +1,7 @@
 package com.boaentrega.servicocliente.service.impl;
 
 import com.boaentrega.servicocliente.model.PedidoStatus;
+import com.boaentrega.servicocliente.model.dto.EnderecosEntregaDTO;
 import com.boaentrega.servicocliente.model.dto.PedidoStatusDTO;
 import com.boaentrega.servicocliente.repository.PedidoStatusRepository;
 import com.boaentrega.servicocliente.service.PedidoStatusService;
@@ -33,7 +34,6 @@ public class RotaServiceImpl implements RotaService {
     @Override
     public DirectionsResult buscarRotaEntrega(Long numeroPedido) throws IOException, ApiException, InterruptedException {
     
-        System.out.println("chegou");
         // PedidoStatus pedido = repository.findById(numeroPedido).orElseThrow();
 
         GeoApiContext sc = new GeoApiContext.Builder().apiKey("AIzaSyANLfJ9O8NBmnTjLlfwblSek5kY52og24c").build();
@@ -44,6 +44,18 @@ public class RotaServiceImpl implements RotaService {
             .destination("São Paulo")
             .await();
 
+        
+        return result;
+    }
+
+    @Override
+    public EnderecosEntregaDTO buscarEnderecosEntrega(Long numeroPedido) throws IOException {
+    
+        PedidoStatus pedido = repository.findById(numeroPedido).orElseThrow();
+
+        EnderecosEntregaDTO result = new EnderecosEntregaDTO();
+        result.setOrigem(pedido.getLocalizacao());
+        result.setDestino(pedido.getDestino().getEnderecoCompleto());
         
         return result;
     }

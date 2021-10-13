@@ -26,7 +26,27 @@ public class Endereco {
 
     private String complemento;
 
-    private Double latitude;
+    private String cidade;
 
-    private Double longitude;
+    private String estado;
+
+    public String getEnderecoCompleto() {
+        StringBuilder builder = new StringBuilder()
+                                    .append(logradouro)
+                                    .append(" ")
+                                    .append(numero)
+                                    .append(" ");
+        if (complemento != null && !complemento.isEmpty()) {
+            builder.append(complemento)
+                    .append(" ");
+        }
+                    
+        return builder
+                .append(cidade)
+                .append(" ")
+                .append(estado)
+                .append(" ")
+                .append(cep)
+                .toString();
+    }
 }
