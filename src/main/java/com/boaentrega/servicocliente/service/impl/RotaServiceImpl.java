@@ -28,24 +28,6 @@ public class RotaServiceImpl implements RotaService {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-
-    @Override
-    public DirectionsResult buscarRotaEntrega(Long numeroPedido) throws IOException, ApiException, InterruptedException {
-    
-        // PedidoStatus pedido = repository.findById(numeroPedido).orElseThrow();
-
-        GeoApiContext sc = new GeoApiContext.Builder().apiKey("AIzaSyANLfJ9O8NBmnTjLlfwblSek5kY52og24c").build();
-
-        DirectionsResult result = DirectionsApi.newRequest(sc).
-            origin("Belo Horizonte")
-            //.destination(new LatLng(pedido.getDestino().getLatitude(), pedido.getDestino().getLongitude()))
-            .destination("São Paulo")
-            .await();
-
-        
-        return result;
-    }
-
     @Override
     public EnderecosEntregaDTO buscarEnderecosEntrega(Long numeroPedido) throws Exception {
     
