@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class PedidoStatusServiceImpl implements PedidoStatusService {
@@ -40,7 +41,7 @@ public class PedidoStatusServiceImpl implements PedidoStatusService {
         PedidoStatusDTO dto = mapper.readValue(mensagem, PedidoStatusDTO.class);
         log.info("Pedido : {}", dto.toString());
         PedidoStatus pedidoStatus = repository.findById(dto.getNumeroPedido())
-                .orElseThrow(() -> new Exception("Pedido nao encontrado"));
+                .orElseThrow(() -> new Exception("Pedido não encontrado"));
         pedidoStatus.setStatus(dto.getStatus());
         pedidoStatus.setLocalizacao(dto.getLocalizacao());
         if(pedidoStatus.getStatus().equalsIgnoreCase("ENTREGUE")){
@@ -50,4 +51,9 @@ public class PedidoStatusServiceImpl implements PedidoStatusService {
         log.info("Pedido Salvo : {}", pedidoStatus.toString());
 
     }
+
+    @Override
+    public List<PedidoStatus> buscarPedidosNaoEntregues() {
+        return repository.findByStatusNot("ENTREGUE");
+    };
 }
