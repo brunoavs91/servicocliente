@@ -26,8 +26,6 @@ public class RotaServiceImpl implements RotaService {
     @Autowired
     private PedidoStatusRepository repository;
 
-    private ObjectMapper mapper = new ObjectMapper();
-
     Logger log = LoggerFactory.getLogger(this.getClass());
 
 
@@ -49,13 +47,14 @@ public class RotaServiceImpl implements RotaService {
     }
 
     @Override
-    public EnderecosEntregaDTO buscarEnderecosEntrega(Long numeroPedido) throws IOException {
+    public EnderecosEntregaDTO buscarEnderecosEntrega(Long numeroPedido) throws Exception {
     
-        PedidoStatus pedido = repository.findById(numeroPedido).orElseThrow();
+        PedidoStatus pedido = repository.findById(numeroPedido).
+            orElseThrow(() -> new Exception(String.format("Pedido %d não encontrado", numeroPedido)));
 
         EnderecosEntregaDTO result = new EnderecosEntregaDTO();
         result.setOrigem(pedido.getLocalizacao());
-        result.setDestino(pedido.getDestino().getEnderecoCompleto());
+        result.setDestino(pedido.getDestino());
         
         return result;
     }

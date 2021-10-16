@@ -33,7 +33,5 @@ public class PedidoStatus {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataFim;
 
-    @OneToOne
-    @JoinColumn(name = "destino")
-    private Endereco destino;
+    private String destino;
 }

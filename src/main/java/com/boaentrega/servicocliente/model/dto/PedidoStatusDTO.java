@@ -28,7 +28,7 @@ public class PedidoStatusDTO {
         this.setNumeroPedido(entity.getNumeroPedido());
         this.setLocalizacao(entity.getLocalizacao());
         this.setStatus(entity.getStatus());
-        this.setDestino(entity.getDestino() != null ? entity.getDestino().getEnderecoCompleto() : null);
+        this.setDestino(entity.getDestino());
     }
 
 }

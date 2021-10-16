@@ -10,6 +10,6 @@ public interface RotaService {
 
     DirectionsResult buscarRotaEntrega(Long numeroPedido) throws IOException, ApiException, InterruptedException;
 
-    EnderecosEntregaDTO buscarEnderecosEntrega(Long numeroPedido) throws IOException;
+    EnderecosEntregaDTO buscarEnderecosEntrega(Long numeroPedido) throws Exception;
 
 }

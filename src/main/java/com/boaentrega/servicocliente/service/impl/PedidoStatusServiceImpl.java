@@ -31,6 +31,7 @@ public class PedidoStatusServiceImpl implements PedidoStatusService {
         log.info("Pedido : {}", dto.toString());
         PedidoStatus pedidoStatus = repository.save(PedidoStatus.builder().numeroPedido(dto.getNumeroPedido())
                 .status(dto.getStatus()).localizacao(dto.getLocalizacao())
+                .destino(dto.getDestino())
                 .dataInicio(Calendar.getInstance()).build());
         log.info("Pedido Salvo : {}", pedidoStatus.getNumeroPedido());
 
