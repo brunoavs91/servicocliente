@@ -25,7 +25,7 @@ public class RotasController {
     private RotaService rotaService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getDirections(@PathVariable("id") Long id) {
+    public ResponseEntity<String> getRotaPedido(@PathVariable("id") Long id) {
         try{
             EnderecosEntregaDTO rota = rotaService.buscarEnderecosEntrega(id);
             return ResponseEntity.ok().body(mapper.writeValueAsString(rota));
