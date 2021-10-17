@@ -24,7 +24,7 @@ eureka:
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8088/user
+      user-info-uri: http://2-54-91-46-136.compute-1.amazonaws.com:8088/user
 
 cloud:
   aws:
