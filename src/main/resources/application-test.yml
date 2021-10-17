@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: 'servico-cliente'
+  datasource:
+    username: <>
+    password: <>
+    url: jdbc:mysql://localhost:3306/servico-cliente
+    driver-class-name: org.mariadb.jdbc.Driver
+    jpa:
+      hibernate:
+        ddl: true
+        ddl-auto: create
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8088/user
+
+cloud:
+  aws:
+    region:
+      static: us-east-1
+      auto: false
+    credentials:
+      access-key: <>
+      secret-key: <>
+    end-point:
+        uri-criar: https://sqs.us-east-1.amazonaws.com/124223312961/criar_pedido_status
+        uri-atualizar: https://sqs.us-east-1.amazonaws.com/124223312961/atualizar_pedido_status
+
